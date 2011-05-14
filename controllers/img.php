@@ -52,7 +52,31 @@ class Img extends CI_Controller{
 		$raw_name = $file_data['raw_name'];
 		$file_ext = $file_data['file_ext'];
 	}
-	
+		
+	public function imgproc()
+	{
+		$img_name = $this->input->post('img_name');
+		$x = $this->input->post('x');
+		$y = $this->input->post('y');
+		$text = $this->input->post('text');
+		$font = $this->input->post('font');
+		$font_size = $this->input->post('font_size');
+		$font_color = $this->input->post('font_color');
+		
+		$config['image_library'] = 'gd2';
+		$config['source_image']	= './uploads/' . $img_name;
+		$config['wm_text'] = $text;
+		$config['wm_type'] = 'text';
+		$config['wm_font_path'] = './fonts/' . $font . '.ttf';
+		$config['wm_font_size']	= $font_size;
+		$config['wm_font_color'] = $font_color;
+		$config['wm_vrt_offset'] = $x;
+		$config['wm_hor_offset'] = $y;
+
+		$this->load->library('image_lib');
+		$this->image_lib->initialize($config); 
+		$this->image_lib->watermark();		
+	}
 }
 
 ?>
