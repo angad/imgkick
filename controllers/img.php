@@ -11,7 +11,7 @@ class Img extends CI_Controller{
 	{
 		parent::__construct();
 		$this->load->helper('url');
-		$htis->load->helper('form');
+		$this->load->helper('form');
 	}
 	
 	public function index()
@@ -41,7 +41,7 @@ class Img extends CI_Controller{
 
 		if (!$this->upload->do_upload("raw"))
 		{
-			$error = array('error' => $this->upload->display_errors();
+			
 			//load the main view again
 			
 		}
